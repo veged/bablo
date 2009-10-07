@@ -1,0 +1,29 @@
+{% load bitems_tags %}
+
+{% ifnotequal bitem.children.count 0 %}
+    {% bitem_action bitem "children" "уточнения" current_action cbitem %}
+{% endifnotequal %}
+{% ifnotequal bitem.parents.count 0 %}
+    {% bitem_action bitem "parents" "обобщения" current_action cbitem %}
+{% endifnotequal %}
+{% bitem_action bitem "edit" "изменить" current_action cbitem %}
+{% bitem_action bitem "delete" "удалить" current_action cbitem %}
+{% bitem_action bitem "specify" "уточнить" current_action cbitem %}
+{% bitem_action bitem "generalize" "обобщить" current_action cbitem %}
+{% if cbitem %}
+    {% ifequal current_action "children" %}
+        {% bitem_action bitem "unlink" "разорвать связь" current_action cbitem %}
+    {% endifequal %}
+    {% ifequal current_action "parents" %}
+        {% bitem_action bitem "unlink" "разорвать связь" current_action cbitem %}
+    {% endifequal %}
+    {% ifequal current_action "linkgeneralize" %}
+        {% bitem_action bitem "linkgeneralize" "связать с уточнением" current_action cbitem %}
+    {% endifequal %}
+    {% ifequal current_action "linkspecify" %}
+        {% bitem_action bitem "linkspecify" "связать с обобщением" current_action cbitem %}
+    {% endifequal %}
+{% else %}
+    {% bitem_action bitem "linkgeneralize" "связать с обобщением" current_action %}
+    {% bitem_action bitem "linkspecify" "связать с уточнением" current_action %}
+{% endif %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load bitems_tags %}
+
+{% block main_content %}
+    {% if bitem %}
+        {% if already_link %}
+            {% bitem bitem bitem_action %}
+            <p>Уже связаны.</p>
+            {% bitem target_bitem "" %}
+        {% else %}
+            <form action="." method="post">
+                {% bitem bitem bitem_action %}
+                <input type="submit" name="link"
+                    value="Связать с {% ifequal bitem_action "linkgeneralize" %}обобщением{% endifequal %}{% ifequal bitem_action "linkspecify" %}уточнением{% endifequal %}"/>&nbsp;
+                <a href="../../">Отменить</a>
+                {% bitem target_bitem "" %}
+            </form>
+        {% endif %}
+    {% endif %}
+{% endblock %}

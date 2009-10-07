@@ -1,0 +1,11 @@
+{% extends "bitem.html" %}
+{% load bitems_tags %}
+
+{% block bitem_content %}
+    {{ block.super }}
+    <form action="." method="post">
+        {% bitem_form bitem form bitem_action %}
+        <input type="submit" name="save" value="Сохранить"/>&nbsp;
+        <a href="../">Отменить</a>
+    </form>
+{% endblock %}

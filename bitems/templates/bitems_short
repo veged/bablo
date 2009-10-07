@@ -1,0 +1,11 @@
+{% if bitems %}
+    <h2>{{ title }}</h2>
+    <p>
+        {% for bitem in bitems %}
+            <a href="/bitems/{{ bitem.id }}/">{{ bitem.title }}</a>{% if not forloop.last %}, {% else %}{% if bitems_has_more %}, {% endif %}{% endif %}
+        {% endfor %}
+        {% if bitems_has_more %}
+            <a href="/bitems/{{ cbitem.id }}/{{ name }}/"><i>все {{ bitems_count }}</i></a>
+        {% endif %}
+    </p>
+{% endif %}

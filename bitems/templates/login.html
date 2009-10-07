@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content_header %}Бабло!{% endblock %}
+
+{% block main_content %}
+    <form action="." method="post">
+        {% if form.has_errors %}
+        <p>Логин и пароль неподходят. Попробуйте ещё раз.</p>
+        {% endif %}
+        <p><label for="id_username">Логин:&nbsp;</label>{{ form.username }}</p>
+        <p><label for="id_password">Пароль:&nbsp;</label>{{ form.password }}</p>
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input type="submit" value="Вход"/>
+    </form>
+{% endblock %}

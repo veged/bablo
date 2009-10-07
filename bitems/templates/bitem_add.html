@@ -1,0 +1,23 @@
+{% extends "bitem.html" %}
+{% load bitems_tags %}
+
+{% block main_content %}
+    {{ block.super }}
+    {% if not bitem %}
+        <form action="." method="post">
+            {% bitem_form "" form bitem_action %}
+            <input type="submit" name="create" value="Создать"/>&nbsp;
+            <a href="../">Отменить</a>
+        </form>
+    {% endif %}
+{% endblock %}
+
+{% block bitem_content %}
+    {{ block.super }}
+    <form action="." method="post">
+        {% bitem_form bitem form bitem_action %}
+        <input type="submit" name="create"
+            value="Создать {% ifequal bitem_action "generalize" %}обобщение{% endifequal %}{% ifequal bitem_action "specify" %}уточнение{% endifequal %}"/>&nbsp;
+        <a href="../">Отменить</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+from django.conf.urls.defaults import *
+from bablo.bitems.views import *
+
+urlpatterns = patterns('',
+    (r'^$', bitems_lists),
+    (r'^(?P<blist_action>mainminuses|lonely|recent)/$', bitems_list),
+    (r'^(?P<blist_action>mainminuses|lonely|recent)/skip(?P<skip>\d+)/$', bitems_list),
+    (r'^(?P<id>\d+)/$', bitem, {'bitem_action': 'view'}),
+    (r'^(?P<id>\d+)/children/$', bitem, {'bitem_action': 'children', 'blist_action': 'children'}),
+    (r'^(?P<id>\d+)/children/skip(?P<skip>\d+)/$', bitem, {'bitem_action': 'children', 'blist_action': 'children'}),
+    (r'^(?P<id>\d+)/parents/$', bitem, {'bitem_action': 'parents', 'blist_action': 'parents'}),
+    (r'^(?P<id>\d+)/parents/skip(?P<skip>\d+)/$', bitem, {'bitem_action': 'parents', 'blist_action': 'parents'}),
+    (r'^(?P<id>\d+)/edit/$', bitem_edit, {'bitem_action': 'edit'}),
+    (r'^(?P<id>\d+)/delete/$', bitem_delete, {'bitem_action': 'delete'}),
+    (r'^(?P<id>\d+)/specify/$', bitem_add, {'bitem_action': 'specify'}),
+    (r'^(?P<id>\d+)/generalize/$', bitem_add, {'bitem_action': 'generalize'}),
+    (r'^(?P<id>\d+)/linkspecify/$', bitems_lists, {'bitem_action': 'linkspecify'}),
+    (r'^(?P<id>\d+)/linkgeneralize/$', bitems_lists, {'bitem_action': 'linkgeneralize'}),
+    (r'^(?P<id>\d+)/linkspecify/(?P<blist_action>mainminuses|lonely|recent)/$', bitems_list, {'bitem_action': 'linkspecify'}),
+    (r'^(?P<id>\d+)/linkgeneralize/(?P<blist_action>mainminuses|lonely|recent)/$', bitems_list, {'bitem_action': 'linkgeneralize'}),
+    (r'^(?P<id>\d+)/linkspecify/(?P<blist_action>mainminuses|lonely|recent)/skip(?P<skip>\d+)/$', bitems_list, {'bitem_action': 'linkspecify'}),
+    (r'^(?P<id>\d+)/linkgeneralize/(?P<blist_action>mainminuses|lonely|recent)/skip(?P<skip>\d+)/$', bitems_list, {'bitem_action': 'linkgeneralize'}),
+    (r'^(?P<id>\d+)/linkspecify/(?P<target_id>\d+)/$', bitem_link, {'bitem_action': 'linkspecify'}),
+    (r'^(?P<id>\d+)/linkgeneralize/(?P<target_id>\d+)/$', bitem_link, {'bitem_action': 'linkgeneralize'}),
+    (r'^(?P<id>\d+)/unlink/(?P<target_id>\d+)/$', bitem_unlink, {'bitem_action': 'unlink'}),
+    (r'^add/$', bitem_add, {'bitem_action': 'add'}),
+    (r'^logout/$', logout_view),
+    )

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+    <title>{% block title %}Бабло!{% endblock %}</title>
+    {% block head_scripts %}
+        <script type="text/javascript" charset="utf-8" src="http://img.yandex.net/y5/1.4.5/mega-y5.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/Bablo.js"></script>
+    {% endblock %}
+    {% block head_styles %}
+        <link href="/css/bablo.css" rel="stylesheet"/>
+    {% endblock %}
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <h1>
+        {% block content_header %}
+            {% if not bitem_action and not blist_action %}Бабло!{% else %}
+                <a href="/bitems/">Бабло!</a>
+            {% endif %}
+        {% endblock %}
+        {% if user.is_authenticated %}&nbsp;<sup><a href="/logout/">выйти</a></sup>{% endif %}
+    </h1>
+
+    {% block main_content %}{% endblock %}
+    {% block content %}{% endblock %}
+
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if notifications %}
+    <ul>
+        {% for notification in notifications %}
+        <li>{{ notification.title }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <script type="text/javascript" charset="utf-8">
+        y5.require(['CallBacks', 'Components'], function() {y5.CallBacks.dispatch('srcload');});
+    </script>
+</body>
+</html>

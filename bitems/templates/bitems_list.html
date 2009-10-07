@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load bitems_tags %}
+
+{% block main_content %}
+    {% if bitem %}
+        {% bitem bitem bitem_action %}
+    {% endif %}
+    {% bitems_middle bitems_list bitems_list_title blist_action bitem skip bitem_action %}
+{% endblock %}

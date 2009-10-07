@@ -1,0 +1,5 @@
+{% spaceless %}
+<sup>{% if action_active %}{{ action_title }}{% else %}
+        <a href="{{ action_url }}">{{ action_title }}</a>
+    {% endif %}</sup>&nbsp;
+{% endspaceless %}

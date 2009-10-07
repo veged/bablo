@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bitems_tags %}
+
+{% block main_content %}
+    {% if bitem %}
+        <form action="." method="post">
+            {% bitem bitem bitem_action %}
+            <input type="submit" name="link"
+                value="Разорвать связь"/>&nbsp;
+            <a href="../../">Отменить</a>
+            {% bitem target_bitem bitem_action bitem %}
+        </form>
+    {% endif %}
+{% endblock %}

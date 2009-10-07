@@ -1,0 +1,10 @@
+{% load bitems_tags %}
+
+<h2>
+    {% ifequal current_action "view" %}
+        {{ bitem.title }} ({{ bitem.total_amount }} руб.)&nbsp;
+    {% else %}
+        <a href="/bitems/{{ bitem.id }}/">{{ bitem.title }} ({{ bitem.total_amount }} руб.)</a>&nbsp;
+    {% endifequal %}
+    {% bitem_actions bitem current_action cbitem %}
+</h2>

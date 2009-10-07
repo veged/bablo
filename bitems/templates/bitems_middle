@@ -1,0 +1,25 @@
+{% load bitems_tags %}
+
+{% if bitems %}
+    <h2>{{ title }}</h2>
+    <ul class="Bablo-c-BitemsMiddleList">
+        {% ifnotequal skip 0 %}
+            <li class="more">
+                <i><a href="{{ more_url }}{% ifnotequal bitems_less_skip 0 %}skip{{ bitems_less_skip }}/{% endifnotequal%}"
+                        >ещё {{ bitems_less }}{% ifnotequal bitems_less skip %} из {{ skip }}{% endifnotequal %}</a></i>
+            </li>
+        {% endifnotequal %}
+        {% for bitem in bitems %}
+            <li class="Bablo-c-BitemMiddle">
+                <a href="/bitems/{{ bitem.id }}">{{ bitem.title }}</a>&nbsp;
+                {% bitem_actions bitem bitem_action cbitem %}
+            </li>
+        {% endfor %}
+        {% ifnotequal bitems_more 0 %}
+            <li class="more">
+                <i><a href="{{ more_url }}skip{{ bitems_more_skip }}/"
+                    >ещё {{ bitems_more }}{% ifnotequal bitems_more bitems_remainder %} из {{ bitems_remainder }}{% endifnotequal %}</a></i>
+            </li>
+        {% endifnotequal %}
+    </ul>
+{% endif %}

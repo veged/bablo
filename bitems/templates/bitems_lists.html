@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load bitems_tags %}
+
+{% block main_content %}
+    {% if bitem %}
+        {% bitem bitem bitem_action %}
+    {% else %}
+        <h2>Баланс: {{ balance }}</h2>
+        {% if has_bitems %}
+            <h2>
+                Известные деньги&nbsp;
+                <sup><a href="add/">добавить</a></sup>
+            </h2>
+        {% else %}
+            <h2>
+                Мы не знаем про деньги&nbsp;
+                <sup><a href="add/">рассказать</a></sup>
+            </h2>
+        {% endif %}
+    {% endif %}
+
+    {% for bitems_list in bitems_lists %}
+        {% bitems_middle bitems_list.bitems bitems_list.title bitems_list.name bitem 0 bitem_action %}
+    {% endfor %}
+{% endblock %}

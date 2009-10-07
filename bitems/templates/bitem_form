@@ -1,0 +1,28 @@
+<p>
+    {{ form.title.label_tag }}:
+    {{ form.title }}
+    {% if form.title.errors %}{{ form.title.errors }}{% endif %}
+</p>
+<p>
+    {{ form.amount.label_tag }}:
+    {% if bitem %}
+        {% ifequal action "edit" %}
+        {% ifnotequal bitem.total_subamount 0 %}
+            {{ bitem.total_subamount }} +
+        {% endifnotequal %}
+        {% endifequal %}
+
+        {% ifequal action "generalize" %}
+        {% ifnotequal bitem.total_amount 0 %}
+            {{ bitem.total_amount }} +
+        {% endifnotequal %}
+        {% endifequal %}
+    {% endif %}
+    {{ form.amount }} руб.
+    {% if form.amount.errors %}{{ form.amount.errors }}{% endif %}
+</p>
+<p>
+    {{ form.time.label_tag }}:
+    {{ form.time }}
+    {% if form.time.errors %}{{ form.time.errors }}{% endif %}
+</p>

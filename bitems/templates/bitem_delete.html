@@ -1,0 +1,10 @@
+{% extends "bitem.html" %}
+{% load bitems_tags %}
+
+{% block bitem_content %}
+    {{ block.super }}
+    <form action="." method="post">
+        <input type="submit" name="delete" value="Удалить"/>&nbsp;
+        <a href="../">Отменить</a>
+    </form>
+{% endblock %}
